@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<h1>Boggle</h1>
+<div class="game-div">
+    <table id="game-board">
+        {% for row in session['board'] %}
+            <tr>
+                {% for letter in row %}
+                    <td>{{letter}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form action="" id="submit-word">
+        <label for="word-guess">Submit Words:</label>
+        <input type="text" placeholder="word" id="word-guess">
+        <button>Submit</button>
+    </form>
+</div>
+
+{% endblock %}
