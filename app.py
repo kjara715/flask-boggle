@@ -14,3 +14,9 @@ boggle_game = Boggle()
 def game_page():
     session['board'] = boggle_game.make_board()
     return render_template("home.html")
+
+# @app.route('/word-guess', methods=["POST"])
+# def check_word():
+#     request.form["word-guess"] #I think it's based on the id so this should work
+
+
