@@ -18,6 +18,17 @@
         <input type="text" placeholder="word" id="word-guess">
         <button id="submit-me">Submit</button>
     </form>
+    <p class="message"></p>
+    <br>
+    <label for="score">You score:</label>
+    <div class="score"></div>
+    <br>
+    <label for="timer">Time Left</label>
+    <div class="timer"></div>
+    <br>
+    <p class="high-score">
+        The high score is {{highscore}} out of {{nplays}} games
+    </p>
 </div>
 
 {% endblock %}
