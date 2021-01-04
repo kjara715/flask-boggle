@@ -1,17 +1,13 @@
 $(function(){
-
-    alert("am I working?")
-
-    const $submitWord=$("#submit-word");
-    const $wordGuess=$("#word-guess"); //want to send this value to the server (on a new route?)
     
     $("#submit-word").on("submit", async function(e){
-        e.preventDefault()
+        e.preventDefault() //prevents page refresh
         console.log('testing')
 
-        // await axios.post('/word-guess')
+        await axios.get('/word-guess') //want to send a post request to the server without refreshing the page
 
-        $('#word-guess').val()='' //clear out value
+        // console.log($('#word-guess').val()) 
+        // $('#word-guess').val('')
     })
 
 })
