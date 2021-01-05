@@ -15,6 +15,10 @@ boggle_game = Boggle()
 
 @app.route('/')
 def game_page():
+    """
+    Home page which shows board and form for word submission
+
+    """
     board=boggle_game.make_board()
     session['board'] = board
     highscore=session.get("highscore", 0) #if no highscore, then the highscore is set to 0
@@ -23,12 +27,28 @@ def game_page():
 
 @app.route('/word-guess')
 def check_word():
+    """
+    runs the check_valid_word function to see if the word submitted counts as a valid english word on the board.
+    responds with a json object containing the result from the function
+
+    """
     my_word=request.args['word']
     board=session["board"]
     result = boggle_game.check_valid_word(board, my_word) #pass in the board and the word to check
     
     return jsonify({"result": result})
 
-# @app.route('/score', methods=["POST", "GET"])
-# def post_score():
-#     score= request.json['currentScore'] #why not request.form?
+@app.route('/score', methods=["POST"])
+def post_score():
+    """
+    takes the current score at the end of the game 
+
+    """
+    score= request.json['currentScore'] #why not request.form?
+    highscore = session.get("highscore", 0)
+    nplays=session.get("nplays", 0)
+
+    session['nplays']=nplays+1
+    session['highscore']=max(score, highscore) #the highscore becomes the current score
+
+    return jsonify(brokeRecord=score > highscore)
